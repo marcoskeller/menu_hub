@@ -11,3 +11,10 @@ e o preço.
 
 ```bash
 Marcos Keller da Fonseca
+```
+
+## Framework(s) Utilizado(s)
+
+```python
+Flask
+```
