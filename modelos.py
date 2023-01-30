@@ -8,44 +8,43 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 
 # Classe Modelo Para o Restaurante
-
-class Restaurant(db.Model):
+class Restaurante(db.Model):
     __tablename__ = constantes.RESTAURANTS_TABLE_NAME
 
     id     = db.Column(db.Integer, primary_key = True)
-    name   = db.Column(db.String(100), nullable = False)
-    plates = db.relationship('Plate', backref='restaurants', lazy="joined")
-    users  = db.relationship('User',  backref='restaurants', lazy="joined")
+    nome   = db.Column(db.String(90), nullable = False)
+    pratos = db.relationship('Prato', backref='restaurantes', lazy="joined")
+    usuarios  = db.relationship('Usuario',  backref='restaurantes', lazy="joined")
     created_on = db.Column(db.DateTime(), default=datetime.utcnow)
 
     def __repr__(self):
-        return f'Restaurant [#{self.id}, name: {self.name}, created_on: {self.created_on}]'
+        return f'Restaurante [#{self.id}, nome: {self.name}, created_on: {self.created_on}]'
 
 
 # Classe Modelo para o Prato
-class Plate(db.Model):
+class Prato(db.Model):
     __tablename__ = constantes.PLATES_TABLE_NAME
 
     id         = db.Column(db.Integer, primary_key = True)
-    name       = db.Column(db.String(100), nullable = False)
-    category   = db.Column(db.String(200), nullable = False)
-    price      = db.Column(db.String(5), nullable = False)    
-    restaurant_id = db.Column(db.Integer, db.ForeignKey("restaurants.id"))
+    nome       = db.Column(db.String(90), nullable = False)
+    categoria   = db.Column(db.String(100), nullable = False)
+    preco      = db.Column(db.String(10), nullable = False)    
+    restaurante_id = db.Column(db.Integer, db.ForeignKey("restaurantes.id"))
     created_on = db.Column(db.DateTime(), default=datetime.utcnow)
 
     def __repr__(self):
-        return f'Plate [#{self.id}, name: {self.name}, category: {self.category}, price: {self.price}, created_on: {self.created_on}]'
+        return f'Prato [#{self.id}, nome: {self.name}, categoria: {self.category}, preco: {self.price}, created_on: {self.created_on}]'
 
 
 # Classe Modelo para o  Usuario
-class User(db.Model):
+class Usuario(db.Model):
     __tablename__ = constantes.USERS_TABLE_NAME
 
     id         = db.Column(db.Integer, primary_key = True)
-    name       = db.Column(db.String(100), nullable = False)
-    email      = db.Column(db.String(200), nullable = False)
+    nome       = db.Column(db.String(90), nullable = False)
+    email      = db.Column(db.String(100), nullable = False)
     password_hash = db.Column(db.String(128), nullable = False)
-    restaurant_id = db.Column(db.Integer, db.ForeignKey("restaurants.id"), nullable = False)  
+    restaurante_id = db.Column(db.Integer, db.ForeignKey("restaurantes.id"), nullable = False)  
     created_on = db.Column(db.DateTime(), default=datetime.utcnow)
 
     def check_email(self, email):
@@ -61,4 +60,4 @@ class User(db.Model):
         return int(restaurant_id) == self.restaurant_id
 
     def __repr__(self):
-        return f'User [#{self.id}, name: {self.name}, restaurant_id: {self.restaurant_id}, email: {self.email}, created_on: {self.created_on}]'
+        return f'Usuario [#{self.id}, nome: {self.name}, restaurante_id: {self.restaurant_id}, email: {self.email}, created_on: {self.created_on}]'
