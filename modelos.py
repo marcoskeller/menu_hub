@@ -1,8 +1,10 @@
-import constantes
-from werkzeug.security import generate_password_hash, check_password_hash
-from sqlalchemy.ext.hybrid import hybrid_property
 from app import db
 from datetime import datetime
+import constantes
+
+from sqlalchemy.ext.hybrid import hybrid_property
+from werkzeug.security import generate_password_hash, check_password_hash
+
 
 
 # Classe Modelo Para o Restaurante
