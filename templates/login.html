@@ -1,0 +1,46 @@
+{% extends "aplicacao.html" %}
+
+{% block html_attribs %} lang pt_BR="BR"{% endblock %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mb-3">Login</h1>
+    {% if message %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>            
+    {% endif %}
+    <div class="card shadow p-3 mb-5 bg-body rounded">
+        <form method="POST" onsubmit="return validateForm(this)" action="/login">
+            <div class="mb-3">
+                <label for="fieldEmail" class="form-label">Endereço de e-mail</label>
+                <input type="email" class="form-control" id="fieldEmail" name="email" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="fieldPassword" class="form-label">Senha</label>
+                <input type="password" class="form-control" id="fieldPassword" name="password" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="fieldRestaurant" class="form-label">Restaurante</label>
+                <select id="fieldRestaurant" class="form-select" required name="restaurant_id">
+                    <option value="0" selected>Select...</option>
+                    {% for restaurant in list_of_restaurants %}
+                        <option value="{{ restaurant.id }}">{{ restaurant.id }} - {{ restaurant.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary mb-3">Login</button>
+        </form>        
+    </div>
+</div>
+{% block scripts %}
+    <script src="{{url_for('static', filename='js/validateLogin.js')}}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
+{% endblock %}
+{% endblock %}

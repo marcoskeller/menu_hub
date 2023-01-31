@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        {% block head %}
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        {% block styles %}
+            <!-- Bootstrap CSS -->
+            {{ bootstrap.load_css() }}
+        {% endblock %}
+
+        <title>MenuHub | {% block title %}{% endblock %}</title>
+        {% endblock %}
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid justify-space-between">                
+                <ul class="navbar-nav navbar-expand-lg">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/login">Logar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/adduser">Usuário</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/restaurant">Restaurante</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/plates">Pratos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/search">Pesquisar</a>
+                    </li>
+                </ul>
+                <div>
+                    <ul class="navbar-nav navbar-expand-lg mr-3">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logout">Sair</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        {% block content %}{% endblock %}
+
+        {% block scripts %}
+            <!-- Optional JavaScript -->
+            {{ bootstrap.load_js() }}
+        {% endblock %}
+        
+    </body>
+</html>

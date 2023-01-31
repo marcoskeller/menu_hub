@@ -1,0 +1,49 @@
+{% extends "aplicacao.html" %}
+
+{% block html_attribs %} lang pt_BR="BR"{% endblock %}
+
+{% block title %}Add User{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mb-3">Adicionar Usuário</h1>
+    <div class="card shadow p-3 mb-5 bg-body rounded">
+        <form method="POST" onsubmit="return validateForm(this)" action="/adduser">
+            <div class="mb-3">
+                <label for="fieldName" class="form-label">Nome</label>
+                <input id="fieldName" type="text" class="form-control" name="name" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="fieldEmail" class="form-label">Endereço de e-mail</label>
+                <input id="fieldEmail" type="email" class="form-control" name="email" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="fieldPassword" class="form-label">Senha</label>
+                <input id="fieldPassword" type="password" class="form-control" name="password" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="fieldConfirmPassword" class="form-label">Confirmar Senha</label>
+                <input id="fieldConfirmPassword" type="password" class="form-control" name="confirmPassword" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="fieldRestaurant" class="form-label">Restaurante</label>
+                <select id="fieldRestaurant" class="form-select" name="restaurant" required>
+                    <option value="0" selected>Selecionar</option>
+                    {% for restaurant in list_of_restaurants %}
+                        <option value="{{ restaurant.id }}">{{ restaurant.id }} - {{ restaurant.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary mb-3">Registrar</button>
+        </form>
+    </div>
+</div>
+{% block scripts %}
+    <script src="{{url_for('static', filename='js/validateNewUserForm.js')}}"></script>
+{% endblock %}
+{% endblock %}
