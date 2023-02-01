@@ -14,24 +14,24 @@
         </div>            
     {% endif %}
     <div class="card shadow p-3 mb-5 bg-body rounded">
-        <form method="POST" action="/search">
+        <form method="POST" action="/pesquisar">
             <div class="container">
                 <div class="row">
 
                     <div class="form-check mb-3 col">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioPratoId" checked>
-                        <label class="form-check-label mb-1" for="radioPratoId">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioPlateId" checked>
+                        <label class="form-check-label mb-1" for="radioPlateId">
                             Id Prato
                         </label>
-                        <input type="number" class="form-control" id="campoPratoId" name="plate_id" required>
+                        <input type="number" class="form-control" id="fieldPlateId" name="plate_id" required>
                     </div>
     
                     <div class="form-check col">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioPratoNome">
-                        <label class="form-check-label mb-1" for="radioPratoNome">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioPlateName">
+                        <label class="form-check-label mb-1" for="radioPlateName">
                             Nome do Prato
                         </label>
-                        <input type="text" class="form-control" id="campoNomePrato" name="plate_name" disabled required>
+                        <input type="text" class="form-control" id="fieldPlateName" name="plate_name" disabled required>
                     </div>
                 </div>
             </div>

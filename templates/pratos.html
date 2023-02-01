@@ -1,4 +1,4 @@
-{% extends "aplication.html" %}
+{% extends "aplicacao.html" %}
 
 {% block html_attribs %} lang pt_BR="BR"{% endblock %}
 
@@ -6,13 +6,13 @@
 
 {% block content %}
 <div class="container">
-    <h1 class="mb-3">Adicionar Prato</h1>
+    <h1 class="mb-3">Adicionar Pratos</h1>
     <div class="card shadow p-3 mb-5 bg-body rounded">
-        <form method="POST" action="/plates" class="m-3">
+        <form method="POST" action="/pratos" class="m-3">
             <div class="row">
                 <div class="col">
                     <div class="mb-2">
-                        <label for="fieldName" class="form-label">Nome do prato</label>
+                        <label for="fieldName" class="form-label">Nome do Prato</label>
                         <input type="text" class="form-control" id="fieldName" name="name" required>
                     </div>
                 </div>
@@ -22,9 +22,9 @@
                         <label for="fieldCategory" class="form-label">Categoria</label>
                         <select id="fieldCategory" class="form-select" required name="category">
                             <option value="-" selected>Selecionar</option>
-                            <option value="STARTER">INICIANTE</option>
-                            <option value="MAIN COURSE">PRATO PRINCIPAL</option>
-                            <option value="DESSERT">SOBREMESA</option>
+                            <option value="INICIAL">INICIAL</option>
+                            <option value="PRATO PRINCIPAL">PRATO PRINCIPAL</option>
+                            <option value="SOBREMESA">SOBREMESA</option>
                         </select>
                     </div>
                 </div>
@@ -52,17 +52,17 @@
                 <th>Nome do Prato</th>
                 <th>Categoria</th>
                 <th>Preço</th>
-                <th>Restaurante ID</th>
-                <th>Açoes</th>
+                <th>ID Restaurante</th>
+                <th>Ações</th>
             </thead>
             <tbody>
                 {% for plate in plates %}
                 <tr>
-                    <td>{{ prato.id }}</td>
-                    <td>{{ prato.name }}</td>
-                    <td>{{ prato.category }}</td>
-                    <td>{{ prato.price }}</td>
-                    <td>{{ prato.restaurant_id }}</td>
+                    <td>{{ plate.id }}</td>
+                    <td>{{ plate.name }}</td>
+                    <td>{{ plate.category }}</td>
+                    <td>{{ plate.price }}</td>
+                    <td>{{ plate.restaurant_id }}</td>
                     <td>
                         <!-- Button trigger modal -->
                         <a href="#" data-plate-id="{{ plate.id }}" data-bs-toggle="modal" data-bs-target="#modalEditPlate" onclick="loadModalFieldsEditPanel(this)">
@@ -86,7 +86,7 @@
     </div>
 </div>
 
-
+<!-- Modal -->
 <div class="modal fade" id="modalEditPlate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <form action="/plates/edit" method="POST">
         <div class="modal-dialog">
@@ -98,7 +98,7 @@
                 <div class="modal-body">
                     <div class="container">
 
-                        
+                        <!-- Plate ID. -->
                         <span class="mb-2">
                             <input type="hidden" class="form-control" id="field_editPlateID" name="plateId">
                         </span>
@@ -114,9 +114,9 @@
                                     <label for="field_editCategory" class="form-label">Categoria</label>
                                     <select id="field_editCategory" class="form-select" required name="editedCategory">
                                         <option value="-" selected>Selecionar</option>
-                                        <option value="STARTER">INICIANTE</option>
-                                        <option value="MAIN COURSE">PRATO PRINCIPAL</option>
-                                        <option value="DESSERT">SOBREMESA</option>
+                                        <option value="INICIAL">INICIAL</option>
+                                        <option value="PRATO PRINCIPAL">PRATO PRINCIPAL</option>
+                                        <option value="SOBREMESA">SOBREMESA</option>
                                     </select>
                                 </div>
                             </div>
@@ -140,7 +140,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save" viewBox="0 0 16 16">
                             <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"/>
                         </svg>
-                        Salvar Alteraçoes
+                        Salvar Alterações
                     </button>
                 </div>
             </div>

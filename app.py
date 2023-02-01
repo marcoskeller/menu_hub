@@ -1,15 +1,5 @@
-import constantes
 import os
-
-
-from visualizar_Restaurantes import *
-from visualizar_Usuario import *
-from visualizar_Pratos import *
-from visualizar_Conta import *
-from visualizar_Pesquisa import *
-
-
-
+import constants
 
 from flask_session import Session
 from flask_bootstrap import Bootstrap5
@@ -20,7 +10,7 @@ from flask_migrate import Migrate
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{os.path.join(basedir, constantes.DATABASE_NAME)}"
+app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{os.path.join(basedir, constants.DATABASE_NAME)}"
 app.config["SQLALCHEMY_TRACK_MODIFICATION"] = False
 
 app.config["SESSION_PERMANENT"] = False
@@ -31,4 +21,8 @@ bootstrap = Bootstrap5(app)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-
+from view_account import *
+from view_plates import *
+from view_search import *
+from view_user import *
+from view_restaurant import *

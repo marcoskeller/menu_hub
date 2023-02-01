@@ -16,7 +16,7 @@
     <div class="card shadow p-3 mb-5 bg-body rounded">
         <form method="POST" onsubmit="return validateForm(this)" action="/login">
             <div class="mb-3">
-                <label for="fieldEmail" class="form-label">Endereço de e-mail</label>
+                <label for="fieldEmail" class="form-label">Endereço e-mail</label>
                 <input type="email" class="form-control" id="fieldEmail" name="email" required>
             </div>
 
@@ -28,7 +28,7 @@
             <div class="mb-3">
                 <label for="fieldRestaurant" class="form-label">Restaurante</label>
                 <select id="fieldRestaurant" class="form-select" required name="restaurant_id">
-                    <option value="0" selected>Select...</option>
+                    <option value="0" selected>Selecionar</option>
                     {% for restaurant in list_of_restaurants %}
                         <option value="{{ restaurant.id }}">{{ restaurant.id }} - {{ restaurant.name }}</option>
                     {% endfor %}

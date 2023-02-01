@@ -1,19 +1,19 @@
 DATABASE_NAME = 'menuhub.sqlite'
 
-PLATES_TABLE_NAME = 'pratos'
-USERS_TABLE_NAME = 'usuarios'
-RESTAURANTS_TABLE_NAME = 'restaurantes'
+PLATES_TABLE_NAME = 'plates'
+USERS_TABLE_NAME = 'users'
+RESTAURANTS_TABLE_NAME = 'restaurants'
 
 ID_PAGE_PLATES = 'pratos.html'
 ID_PAGE_LOGIN = 'login.html'
-ID_PAGE_SEARCH = 'busca.html'
+ID_PAGE_SEARCH = 'pesquisa.html'
 ID_PAGE_USER = 'adicionarUsuario.html'
 ID_PAGE_RESTAURANT = 'restaurante.html'
 
 ID_ROUTE_PLATES = '/pratos'
 ID_ROUTE_LOGIN = '/login'
 ID_ROUTE_LOGOUT = '/logout'
-ID_ROUTE_SEARCH = '/busca'
+ID_ROUTE_SEARCH = '/pesquisar'
 ID_ROUTE_USER = '/adicionarUsuario'
 ID_ROUTE_RESTAURANT = '/restaurante'
 
