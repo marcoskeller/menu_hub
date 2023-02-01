@@ -5,9 +5,7 @@ from models import Restaurant
 from app import app, db
 
 
-#######################
-# ROUTE ADD RESTAURANT
-#######################
+# Rota para Adicionar Restaurante
 @app.route(constants.ID_ROUTE_RESTAURANT, methods=["POST", "GET"])
 def add_restaurant():
 
@@ -22,6 +20,6 @@ def add_restaurant():
             print(constants.MESSAGE_ERROR_SAVING_RESTAURANT)
             return redirect(constants.ID_ROUTE_RESTAURANT)
     else:
-        # List all the restaurants in the database.
+        # Lista todos os restaurantes no banco de dados.
         restaurants = Restaurant.query.order_by(Restaurant.id).all()
         return render_template(constants.ID_PAGE_RESTAURANT, restaurants=restaurants)

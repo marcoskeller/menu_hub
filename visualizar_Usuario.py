@@ -5,9 +5,7 @@ from models import User, Restaurant
 from app import app, db
 
 
-###################
-# ROUTE ADD USER
-###################
+# Routa Adicionar Usuario
 @app.route(constants.ID_ROUTE_USER, methods=["POST", "GET"])
 def add_user():
 

@@ -4,9 +4,7 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from app import db
 from datetime import datetime
 
-##########################
-# Class Model Restaurant
-##########################
+# Classe Modelo Para o Restaurante
 class Restaurant(db.Model):
     __tablename__ = constants.RESTAURANTS_TABLE_NAME
 
@@ -19,9 +17,8 @@ class Restaurant(db.Model):
     def __repr__(self):
         return f'Restaurant [#{self.id}, name: {self.name}, created_on: {self.created_on}]'
 
-###################
-# Class Model Plate
-###################
+
+# Classe Modelo para o Prato
 class Plate(db.Model):
     __tablename__ = constants.PLATES_TABLE_NAME
 
@@ -35,9 +32,8 @@ class Plate(db.Model):
     def __repr__(self):
         return f'Plate [#{self.id}, name: {self.name}, category: {self.category}, price: {self.price}, created_on: {self.created_on}]'
 
-###################
-# Class Model User
-###################
+
+# Classe Modelo para o  Usuario
 class User(db.Model):
     __tablename__ = constants.USERS_TABLE_NAME
 

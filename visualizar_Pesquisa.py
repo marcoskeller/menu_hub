@@ -5,9 +5,7 @@ from models import Plate
 from app import app
 
 
-#####################
-# ROUTE SEARCH PLATES
-#####################
+# Rota Pesquisa de Pratos
 @app.route(constants.ID_ROUTE_SEARCH, methods=["POST", "GET"])
 def search():
     if utils.is_empty_session():

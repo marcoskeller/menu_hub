@@ -4,16 +4,15 @@ from flask import render_template, request, redirect
 from models import Plate
 from app import app, db, session
 
-###########################
-# ROUTE ADD AND LIST PLATES
-###########################
+
+# Rota para Adcionar Uma Lista de Pratos
 @app.route(constants.ID_ROUTE_PLATES, methods=["POST", "GET"])
 def home():
     
     if utils.is_empty_session():
         return utils.render_login_page(constants.MESSAGE_PLEASE_LOG_IN)
 
-    # Get the user's restaurant id.
+     # Obtendo o ID do restaurante do usuário.
     logged_user_restaurant_id = get_restaurant_id_from_logged_user()
 
     if request.method == 'POST':
@@ -29,14 +28,12 @@ def home():
             print(constants.MESSAGE_ERROR_SAVING_PLATE)
             return redirect(constants.ID_ROUTE_PLATES)
     else:
-        # Brings all the plates of the user's restaurant.
+         # Traz todos os pratos do restaurante do usuário.
         plates = get_plates_of_logged_user_restaurant(logged_user_restaurant_id)
         return render_template(constants.ID_PAGE_PLATES, plates=plates)
 
 
-#######################
-# ROUT EDIT A PLATE
-#######################
+ # Rota para Editar um prato
 @app.route("/plates/edit", methods=["POST"])
 def edit_plate():
 
@@ -61,9 +58,7 @@ def edit_plate():
     return redirect(constants.ID_ROUTE_PLATES)
 
 
-#######################
-# ROUT DELETE A PLATE
-#######################
+# Rota para Deletar um Prato
 @app.route("/plates/delete/<plate_id>", methods=["GET"])
 def delete_plate(plate_id):    
     try:
@@ -75,7 +70,7 @@ def delete_plate(plate_id):
 
 
 """ 
-Return the user's restaurant id.
+Retorna o ID do restaurante do usuário.
 """
 def get_restaurant_id_from_logged_user():
     user = session.get(constants.SESSION_ID)
@@ -83,7 +78,7 @@ def get_restaurant_id_from_logged_user():
 
 
 """ 
-Return a list of plates registered for the user's restaurant.
+Retorna uma lista de pratos cadastrados para o restaurante do usuário.
 """
 def get_plates_of_logged_user_restaurant(logged_user_restaurant_id):
     return Plate.query.filter(Plate.restaurant_id == logged_user_restaurant_id).all()
