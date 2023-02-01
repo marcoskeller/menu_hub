@@ -1,15 +1,15 @@
-import constants
+import constantes
 import utils
 from flask import render_template, request
-from models import Plate
+from modelos import Plate
 from app import app
 
 
 # Rota Pesquisa de Pratos
-@app.route(constants.ID_ROUTE_SEARCH, methods=["POST", "GET"])
+@app.route(constantes.ID_ROUTE_SEARCH, methods=["POST", "GET"])
 def search():
     if utils.is_empty_session():
-        return utils.render_login_page(constants.MESSAGE_PLEASE_LOG_IN)
+        return utils.render_login_page(constantes.MESSAGE_PLEASE_LOG_IN)
     
     plates = None
     message = None
@@ -28,8 +28,8 @@ def search():
                 .order_by(Plate.restaurant_id).all()
         
         if not plates:
-            message = constants.MESSAGE_NOTHING_FOUND
+            message = constantes.MESSAGE_NOTHING_FOUND
     else:
         plates = Plate.query.order_by(Plate.id).all()
 
-    return render_template(constants.ID_PAGE_SEARCH, plates=plates, message=message)
+    return render_template(constantes.ID_PAGE_SEARCH, plates=plates, message=message)

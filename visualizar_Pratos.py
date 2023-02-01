@@ -1,16 +1,16 @@
-import constants
+import constantes
 import utils
 from flask import render_template, request, redirect
-from models import Plate
+from modelos import Plate
 from app import app, db, session
 
 
 # Rota para Adcionar Uma Lista de Pratos
-@app.route(constants.ID_ROUTE_PLATES, methods=["POST", "GET"])
+@app.route(constantes.ID_ROUTE_PLATES, methods=["POST", "GET"])
 def home():
     
     if utils.is_empty_session():
-        return utils.render_login_page(constants.MESSAGE_PLEASE_LOG_IN)
+        return utils.render_login_page(constantes.MESSAGE_PLEASE_LOG_IN)
 
      # Obtendo o ID do restaurante do usuário.
     logged_user_restaurant_id = get_restaurant_id_from_logged_user()
@@ -23,14 +23,14 @@ def home():
                       restaurant_id = logged_user_restaurant_id)
         try:           
             utils.save_in_database(db, plate)
-            return redirect(constants.ID_ROUTE_PLATES)
+            return redirect(constantes.ID_ROUTE_PLATES)
         except:
-            print(constants.MESSAGE_ERROR_SAVING_PLATE)
-            return redirect(constants.ID_ROUTE_PLATES)
+            print(constantes.MESSAGE_ERROR_SAVING_PLATE)
+            return redirect(constantes.ID_ROUTE_PLATES)
     else:
          # Traz todos os pratos do restaurante do usuário.
         plates = get_plates_of_logged_user_restaurant(logged_user_restaurant_id)
-        return render_template(constants.ID_PAGE_PLATES, plates=plates)
+        return render_template(constantes.ID_PAGE_PLATES, plates=plates)
 
 
  # Rota para Editar um prato
@@ -53,9 +53,9 @@ def edit_plate():
             db.session.commit()
             db.session.close()
     except:
-        print('[edit_plate]' + constants.MESSAGE_ERROR_EDITING_PLATE)
+        print('[edit_plate]' + constantes.MESSAGE_ERROR_EDITING_PLATE)
 
-    return redirect(constants.ID_ROUTE_PLATES)
+    return redirect(constantes.ID_ROUTE_PLATES)
 
 
 # Rota para Deletar um Prato
@@ -65,15 +65,15 @@ def delete_plate(plate_id):
         Plate.query.filter(Plate.id == int(plate_id)).delete()
         db.session.commit()
     except:
-        print('[delete_plate] - ' + constants.MESSAGE_ERROR_DELETING_PLATE)
-    return redirect(constants.ID_ROUTE_PLATES)
+        print('[delete_plate] - ' + constantes.MESSAGE_ERROR_DELETING_PLATE)
+    return redirect(constantes.ID_ROUTE_PLATES)
 
 
 """ 
 Retorna o ID do restaurante do usuário.
 """
 def get_restaurant_id_from_logged_user():
-    user = session.get(constants.SESSION_ID)
+    user = session.get(constantes.SESSION_ID)
     return user.restaurant_id
 
 

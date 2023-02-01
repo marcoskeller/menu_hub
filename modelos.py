@@ -1,4 +1,4 @@
-import constants
+import constantes
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy.ext.hybrid import hybrid_property
 from app import db
@@ -6,7 +6,7 @@ from datetime import datetime
 
 # Classe Modelo Para o Restaurante
 class Restaurant(db.Model):
-    __tablename__ = constants.RESTAURANTS_TABLE_NAME
+    __tablename__ = constantes.RESTAURANTS_TABLE_NAME
 
     id     = db.Column(db.Integer, primary_key = True)
     name   = db.Column(db.String(100), nullable = False)
@@ -20,7 +20,7 @@ class Restaurant(db.Model):
 
 # Classe Modelo para o Prato
 class Plate(db.Model):
-    __tablename__ = constants.PLATES_TABLE_NAME
+    __tablename__ = constantes.PLATES_TABLE_NAME
 
     id         = db.Column(db.Integer, primary_key = True)
     name       = db.Column(db.String(100), nullable = False)
@@ -35,7 +35,7 @@ class Plate(db.Model):
 
 # Classe Modelo para o  Usuario
 class User(db.Model):
-    __tablename__ = constants.USERS_TABLE_NAME
+    __tablename__ = constantes.USERS_TABLE_NAME
 
     id         = db.Column(db.Integer, primary_key = True)
     name       = db.Column(db.String(100), nullable = False)

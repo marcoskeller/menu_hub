@@ -1,12 +1,12 @@
-import constants
+import constantes
 import utils
 from flask import render_template, request, redirect
-from models import User, Restaurant
+from modelos import User, Restaurant
 from app import app, db
 
 
 # Routa Adicionar Usuario
-@app.route(constants.ID_ROUTE_USER, methods=["POST", "GET"])
+@app.route(constantes.ID_ROUTE_USER, methods=["POST", "GET"])
 def add_user():
 
     if request.method == 'POST':
@@ -18,10 +18,10 @@ def add_user():
 
         try:          
             utils.save_in_database(db, user)          
-            return redirect(constants.ID_ROUTE_LOGIN)
+            return redirect(constantes.ID_ROUTE_LOGIN)
         except:
-            print(constants.MESSAGE_ERROR_SAVING_USER)
-            return redirect(constants.ID_ROUTE_LOGIN)
+            print(constantes.MESSAGE_ERROR_SAVING_USER)
+            return redirect(constantes.ID_ROUTE_LOGIN)
     else:
         restaurants = Restaurant.query.all()
-        return render_template(constants.ID_PAGE_USER, list_of_restaurants=restaurants)
+        return render_template(constantes.ID_PAGE_USER, list_of_restaurants=restaurants)

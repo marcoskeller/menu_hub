@@ -1,12 +1,12 @@
-import constants
+import constantes
 import utils
 from flask import request, redirect
-from models import User
+from modelos import User
 from app import app, session
 
 
 # Rota Login
-@app.route(constants.ID_ROUTE_LOGIN, methods=["POST", "GET"])
+@app.route(constantes.ID_ROUTE_LOGIN, methods=["POST", "GET"])
 def login():
 
     if request.method == 'POST':
@@ -21,26 +21,26 @@ def login():
 
             if user.check_password(password) and user.check_restaurant_id(restaurant_id):
 
-                session[constants.SESSION_ID] = user
+                session[constantes.SESSION_ID] = user
 
-                return redirect(constants.ID_ROUTE_PLATES)
+                return redirect(constantes.ID_ROUTE_PLATES)
 
             else:
-                return utils.render_login_page(constants.MESSAGE_ERROR_INVALID_CREDENTIALS) 
+                return utils.render_login_page(constantes.MESSAGE_ERROR_INVALID_CREDENTIALS) 
         else:
-            return utils.render_login_page(constants.MESSAGE_ERROR_INVALID_CREDENTIALS) 
+            return utils.render_login_page(constantes.MESSAGE_ERROR_INVALID_CREDENTIALS) 
     else:
         return utils.render_login_page(None)
 
 
 
 # Rota Logout
-@app.route(constants.ID_ROUTE_LOGOUT, methods=["POST", "GET"])
+@app.route(constantes.ID_ROUTE_LOGOUT, methods=["POST", "GET"])
 def logout():
 
     message = None
 
     if not utils.is_empty_session():
-        session[constants.SESSION_ID] = None
-        message = constants.MESSAGE_LOG_OUT
+        session[constantes.SESSION_ID] = None
+        message = constantes.MESSAGE_LOG_OUT
     return utils.render_login_page(message)
